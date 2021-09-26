@@ -30,15 +30,12 @@ function pick_card()
   if userCardChoiceInt ∉ 1:length(Cards) # ∉ means "not in"
     print("Please pick valid card: ")
     @goto start # go back to @label start
+  else
+    println("You picked card $userCardChoiceInt. Good luck!")
   end
-
-  return userCardChoice
+  return userCardChoiceInt
 end
 
 function comparing_the_cards()
-  userCardStats = Cards[userCardChoice]
-  for i in ["Health", "Speed", "Defence", "Critical", "Attack"]
-    println(userCardStats[i])
-    println(compCardStats[i])
-  end
+  println(userCardChoiceInt)
 end

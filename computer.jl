@@ -7,11 +7,12 @@ function comp_thinking()
       sleep((rand(0.2:0.3)))
     end
   end
+  println("Computer chose its card. It's show time")
 end
 
 function comp_choosing()
-  GenCard()
-  @async comp_thinking()
+  @async GenCard()
+  comp_thinking()
   compCardStats = Cards[end]
   return compCardStats
 end

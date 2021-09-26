@@ -48,15 +48,11 @@ try
   end
 
     # user picking their card
-    userCard = pick_card()
-
-    println("You picked card $userCard. Good luck! \n")
+    pick_card()
 
     comp_choosing()
+
     comparing_the_cards()
 catch e
   println("Error: $e")
 end
-
-#i think ik?
-#go ahead i am sure idk the problem
