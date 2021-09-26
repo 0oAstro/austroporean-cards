@@ -27,12 +27,13 @@ include("./computer.jl")
 #======================================#
 
 function play_again()
-  println("Do you want to play again (Y/N): ")
+  print("Do you want to play again (Y/N): ")
   playAgain = readline()
 
-  if playAgain == ('y' || 'Y')
+  if playAgain in ["Y", "y"]
     return true
   else
+    println("We hope you enjoyed the game. Goodbye :)")
     return false
   end
 end
@@ -41,11 +42,10 @@ end
 #              Game Loop               #
 #======================================#
 try
-  @time begin
-
+    @label start_of_game
     GenCard()
+    
     print_starting_cards()
-  end
 
     # user picking their card
     pick_card()
@@ -53,6 +53,15 @@ try
     comp_choosing()
 
     comparing_the_cards()
+
+    if play_again()
+      # Clear all the previous card stats
+      pop_many!(x, n) = [pop!(x) for _ in 1:n]
+      pop_many!(Cards, length(Cards))
+      @goto start_of_game
+    else
+      print("Goodbye :)")
+    end
 catch e
-  println("Error: $e")
+    println("Error: $e")
 end

@@ -37,5 +37,5 @@ function pick_card()
 end
 
 function comparing_the_cards()
-  println(userCardChoiceInt)
+  return true
 end
