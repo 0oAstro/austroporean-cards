@@ -4,11 +4,9 @@
 #####  ┗━╸╹ ╹╹┗╸╺┻┛   ┗━┛╹ ╹╹ ╹┗━╸ #####
 #======================================#
 
-@async include("./card_gen.jl")
-@sync @async include("./user.jl")
+include("./card_gen.jl")
+include("./user.jl")
 include("./computer.jl")
-# FUNCTIONS IN card_gen
-# GenCard()
 
 #======================================#
 #        Other File's Functions        #
@@ -19,8 +17,13 @@ include("./computer.jl")
 # pick_card()
 
 # FUNCTIONS IN computer
-# comp_choosing()
+# comp_choosing_card()
 # comp_thinking()
+
+# FUNCTIONS IN moves
+# dodge(currentDodgePercentage)
+# defend()
+# attack(minDmg, maxDmg, critChance, critDmgIncrease)
 
 #======================================#
 #              Functions               #
@@ -30,7 +33,7 @@ function play_again()
   print("Do you want to play again (Y/N): ")
   playAgain = readline()
 
-  if playAgain in ["Y", "y"]
+  if playAgain in ['Y', 'y']
     return true
   else
     println("We hope you enjoyed the game. Goodbye :)")
@@ -41,19 +44,23 @@ end
 #======================================#
 #              Game Loop               #
 #======================================#
+
+### get rid of try catch for release ###
 try
     @label start_of_game
-    GenCard()
+    # generate all the cards the user can pick from
+    @async GenCard()
     
-    print_starting_cards()
+    # shows user the cards they can pick from
+    @sync @async print_starting_cards()
 
     # user picking their card
-    pick_card()
+    userCard = pick_card()
 
-    comp_choosing()
+    # show computer choosing its card
+    comp_choosing_card()
 
-    comparing_the_cards()
-
+    # play again
     if play_again()
       # Clear all the previous card stats
       pop_many!(x, n) = [pop!(x) for _ in 1:n]

@@ -1,22 +1,19 @@
-# @Stats: Health, Speed, Defence, Crit
+# @Stats: Health, Speed, Defence, Crit, Attack
 amntCards = 4
 Cards = []
 
-
-function GenRandStat(minStat, maxStat)
-  return rand(minStat:maxStat)
-end
+# so i realised that this function is completely pointless, there is already a built in function to do this and the funny thing is that that built in function is what we use in this function lmao. fml
 
 function GenCard()
-  @async for i in 1:amntCards
+  for i in 1:amntCards
 
     # Generate tempStats
-    tempHealth = GenRandStat(40, 100)
-    tempSpeed = tempHealth < 50 ? GenRandStat(70,90) : GenRandStat(10, 90)
-    tempDefence = tempHealth > 70 ? GenRandStat(60, 80) : GenRandStat(20, 80)
-    tempCrit = tempDefence > 90 || tempSpeed > 85 ? 9 : GenRandStat(2, 9)
-    
-    tempCard = Dict("Health"=>tempHealth,   "Speed"=>tempSpeed, "Defence"=>tempDefence,   "Critical"=>tempCrit)
+    tempHealth = rand((35:100))
+    tempDefence = tempHealth < 50 ? rand((50:70)) : rand((10:30))
+    tempAttack = tempDefence < 50 ? rand((25:40)) : rand((10:15))
+    tempSpeed = tempAttack < 50 ? rand((70:90)) : rand((10:60)) #    we'll see
+    tempCrit = tempAttack < 30 ? rand((10:15)) : rand((2:9)) #     (idk how we are going to ) no any number ending in 0 will break the wall
+    tempCard = Dict("Health"=>tempHealth,   "Speed"=>tempSpeed, "Defence"=>tempDefence, "Attack" =>tempAttack, "Critical"=>tempCrit)
 
     push!(Cards,tempCard)
 

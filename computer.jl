@@ -10,7 +10,7 @@ function comp_thinking()
   println("Computer chose its card. It's show time")
 end
 
-function comp_choosing()
+function comp_choosing_card()
   @async GenCard()
   comp_thinking()
   compCardStats = Cards[end]
