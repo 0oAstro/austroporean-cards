@@ -22,7 +22,7 @@
 1. Attack - attacks other player and deals damage
 2. Dodge - has chance to dodge away from attack(chance can be stacked)
 3. Block - Incomming attack does low damage 
-4. Special attack - can be used when crit stats hits 100. this will be a special magical move (powered by dark)
+4. Special attack - can be used when crit stats hits 100. this will be a special magical move (powered by dark) <!--Dark nagic will make special attack :evil:--> 
 ---
 
 ### To Do before release

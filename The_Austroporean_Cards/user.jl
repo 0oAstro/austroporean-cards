@@ -1,13 +1,11 @@
-# print out the card choices
+#======================================#
+#        Functions for the user        #
+#======================================#
+
 function print_starting_cards()
   println("\nThese are your cards mate,")
 
-  for i in 1:(trunc(Int, (length(Cards) * 0.5 )))
-    # the great austro-singaporean mess xD
-    # this mf shit card looking stat message took way more time
-
-    # lmao
-    # dont wanna add attack in this very fragile card pattern :sadge:
+  for i in 1:(trunc(Int64, (length(Cards) * 0.5 )))
     print(
       """\n\t
       \t#==============#\t#==============#
