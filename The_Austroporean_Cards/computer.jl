@@ -7,7 +7,3 @@ function comp_choosing_card()
   compCardStats ::Dict = Cards[rand(1:end)]
   return compCardStats
 end
-
-function pick_move()
-  
-end
