@@ -77,7 +77,7 @@ function play_moves()
 
 Cards = []
 chanceToDodge = nothing
-amntDefence = nothing
+defendChance = nothing
 playing = true
 
 try
