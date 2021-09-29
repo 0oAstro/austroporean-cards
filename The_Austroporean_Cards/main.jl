@@ -76,26 +76,28 @@ function play_moves()
 #======================================#
 
 Cards = []
-chanceToDodge = 0
-chanceToCrit = 0
-amntDefence = 0
+chanceToDodge = nothing
+amntDefence = nothing
+playing = true
 
 try
-  @label start_of_game
-  # generate all the cards the user can pick from
-  @async GenCard(4, Cards)
-  # shows user the cards they can pick from
-  @sync @async print_starting_cards() 
-  # user picking their card
-  userCard = pick_card()
-  userCardStats = Cards[userCard]
-  # show computer choosing its card
-  comp_choosing_card()
+  while playing
+    @label start_of_game
+    # generate all the cards the user can pick from
+    @async GenCard(4, Cards)
+    # shows user the cards they can pick from
+    @sync @async print_starting_cards() 
+    # user picking their card
+    userCard = pick_card()
+    userCardStats = Cards[userCard]
+    # show computer choosing its card
+    comp_choosing_card()
 
-  if playAgain()
-      @goto start_of_game
-  else
-    return false
+    if playAgain()
+        @goto start_of_game
+    else
+      return false
+    end
   end
 catch e
   println("Error: $e")
