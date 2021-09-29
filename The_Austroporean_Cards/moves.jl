@@ -9,7 +9,7 @@ function attack(attackStat ::Int64, critStat ::Int64)
   if rand((1:100)) < critStat
     crit = true
     attackCritDmg = attackStat + (attackStat * (critStat / 10)) 
-    return {attackCritDmg, crit}
+    return attackCritDmg, crit
   else
     return attackStat
   end
@@ -23,11 +23,11 @@ function dodge(currentDodgePercentage, speedStat)
   if rand((1:100)) < currentDodgePercentage
     dodged = true
     currentDodgePercentage = currentDodgePercentage + speedStat
-    return {currentDodgePercentage, dodged}
+    return currentDodgePercentage, dodged
   else 
     dodged = false
     currentDodgePercentage = speedStat
-    return {currentDodgePercentage, dodged}
+    return currentDodgePercentage, dodged
   end
 end # returns true if attack was dodged and new dodge chance. if attack wasnt dodged, returns false and sets dodge chance to default speed stat. 
 
