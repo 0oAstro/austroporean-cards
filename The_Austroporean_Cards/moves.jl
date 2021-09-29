@@ -8,13 +8,8 @@ function attack(attackStat ::Int64, critStat ::Int64)
   # the chance that a crit will hit
   if rand((1:100)) < critStat
     crit = true
-<<<<<<< HEAD
-    attackCritDmg = attackStat * (critStat / 10) 
-    return {attackCritDmg, crit}
-=======
     attackCritDmg = attackStat + (attackStat * (critStat / 10)) 
     return attackCritDmg, crit
->>>>>>> f2013607c152e1558d5a52f6bbb4009b6365a11c
   else
     return attackStat
   end
@@ -38,5 +33,10 @@ end # returns true if attack was dodged and new dodge chance. if attack wasnt do
 
 # works like dodge, if you use a defence as your turn it will take some damage away from the attack that hits you. You can stack them but if the attack lands all defence goes away.
 function defend(incommingDamage, defenceStat)
-  
+  if incommingDamage == 0  
+    defenceStat += defenceStat
+    return defenceStat
+  else 
+    return incommingDamage - defenceStat
+  end
 end
