@@ -29,6 +29,7 @@ include("./user.jl")
 
 # FUNCTIONS IN utils
 # thinking(message ::String, end_message ::String) - show the little animation of thinking
+# determine_first_player() - picks and shows the first player, also returns the first player as an int
 
 # FUNCTIONS IN moves
 # dodge(currentDodgePercentage<>) - no idea tbh
@@ -58,45 +59,38 @@ function playAgain()
   end
 end
 
-function play_moves()
-    println("\nShowtime mate :pistol-crossing:\n")
-    while userCardStats["Health"] != 0
-      if rand(1,2) == 2
-        first_chance = "Computer gets"
-      else
-        first_chance = "You get"
-      end
-      thinking("Thinking whom to give first chance", "$first_chance the first chance to play the move")
-      userCardStats["Health"] = 0
-    end
-  end
-
 #======================================#
 #              Game Loop               #
 #======================================#
 
-Cards = []
-chanceToDodge = nothing
-defendAmount = nothing
-playing = true
+userChances = Dict("userChanceToDodge"=>nothing, "userDefendAmount"=>nothing)
+compChances = Dict("compChanceToDodge"=>nothing, "compDefendAmount"=>nothing) 
 
 try
+  playing = true
+  Cards = []
   while playing
     @label start_of_game
-    # generate all the cards the user can pick from
-    @async GenCard(4, Cards)
-    # shows user the cards they can pick from
-    @sync @async print_starting_cards() 
-    # user picking their card
-    userCard = pick_card()
-    userCardStats = Cards[userCard]
-    # show computer choosing its card
-    comp_choosing_card()
 
+    # generate and display cards to pick from
+    @async Cards = GenCard(4, Cards)
+    print("testing:::: $Cards")
+    @sync @async print_starting_cards(Cards) 
+
+    # get card stats for comp and user
+    userCardStats = Cards[pick_card()]
+    compCardStats = comp_choosing_card()
+
+    # get the first player
+    first_player = determine_first_player()
+
+    display_info(userCardStats, compCardStats, userChances, compChances)
+    
+    # Run at end of the game
     if playAgain()
         @goto start_of_game
     else
-      return false
+      return playing = false
     end
   end
 catch e

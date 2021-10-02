@@ -2,20 +2,20 @@
 #        Functions for the user        #
 #======================================#
 
-function print_starting_cards()
+function print_starting_cards(_Cards)
   println("\nThese are your cards mate,")
 
-  for i in 1:(trunc(Int64, (length(Cards) * 0.5 )))
+  for i in 1:(trunc(Int64, (length(_Cards) * 0.5 )))
     print(
       """\n\t
       \t#==============#\t#==============#
       \t    Card $(i)    \t\t    Card $(i + 2)     
       \t              \t\t              
-      \t Health: $(Cards[i]["Health"])   \t\t Health: $(Cards[i + 2]["Health"])    
-      \t Attack: $(Cards[i]["Attack"])   \t\t Attack: $(Cards[i + 2]["Attack"])   
-      \t Defence: $(Cards[i]["Defence"])  \t\t Defence: $(Cards[i + 2]["Defence"])    
-      \t Speed: $(Cards[i]["Speed"])    \t\t Speed: $(Cards[i + 2]["Speed"])     
-      \t Crit: $(Cards[i]["Critical"])     \t\t Crit: $(Cards[i + 2]["Critical"])
+      \t Health: $(_Cards[i]["Health"])   \t\t Health: $(_Cards[i + 2]["Health"])    
+      \t Attack: $(_Cards[i]["Attack"])   \t\t Attack: $(_Cards[i + 2]["Attack"])   
+      \t Defence: $(_Cards[i]["Defence"])  \t\t Defence: $(_Cards[i + 2]["Defence"])    
+      \t Speed: $(_Cards[i]["Speed"])    \t\t Speed: $(_Cards[i + 2]["Speed"])     
+      \t Crit: $(_Cards[i]["Critical"])     \t\t Crit: $(_Cards[i + 2]["Critical"])
       \t#==============#\t#==============#\n\n
       """)
   end
@@ -33,4 +33,8 @@ function pick_card()
     println("You picked card $userCardChoice. Good luck!")
   end
   return userCardChoice
+end
+
+function user_pick_move()
+  print("Select the move that you want to use: attack, defend, dodge")
 end
