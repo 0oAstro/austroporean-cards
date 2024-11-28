@@ -1,7 +1,7 @@
 # The Austroporean Cards
 
 ### Info
-This is a game made by BeeverFeever and Naruto Uzumaki. It is an RPG card style game that runs in the console and is all text based. It has been designed to be replayed as all the stats are randomly generated each time. 
+This is a game made by BeeverFeever and 0oAstro. It is an RPG card style game that runs in the console and is all text based. It has been designed to be replayed as all the stats are randomly generated each time. 
 
 ---
 
